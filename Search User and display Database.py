@@ -61,3 +61,7 @@ def my_details(id):
 
 
 my_w.mainloop()
+
+
+
+# https://www.plus2net.com/python/tkinter-sqlite.php
