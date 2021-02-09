@@ -4,6 +4,9 @@ import tkinter.messagebox as tm
 import sqlite3
 import webbrowser
 
+#User ID: 1046
+#Password: 1046
+
 # Connect to database
 db = sqlite3.connect('Asset Tracking.s3db')
 c = db.cursor()
