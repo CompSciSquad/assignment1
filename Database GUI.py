@@ -44,6 +44,10 @@ def add_data():
             """, (my_id, my_name, my_surname, my_asset))
             my_conn.commit()
             display_data()
+            options.set("")  # reset the option menu
+            tid2.delete('1.0', END)  # reset the text entry box
+            tName.delete('1.0', END)  # reset the text entry box
+            tsname.delete('1.0', END)  # reset the text entry box
         else:
             messagebox.showerror("Error", "Invalid input")
     except:
