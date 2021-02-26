@@ -45,29 +45,32 @@ def my_details(uid, passw):
         int(passw)
         try:
             check = var1.get()
+            # SQL statement to check for the entered ID and password 
             c.execute('SELECT * FROM User_Passwords WHERE ID = ? AND Password = ?', (uid, passw))
 
-            if c.fetchall() and check == 1:
+            if c.fetchall() and check == 1:  # if the details were found, login is successful
                 tm.showinfo("Success", "Welcome")
-            elif c.fetchall() or check == 0:
+            elif c.fetchall() or check == 0:  #  if the details were found but the user does't agree to the terms, then login failed
                 tm.showerror("Login error", "Accept Terms and Conditions to continue")
-            else:
+            else:  # if the details weren't found then login failed
                 tm.showerror("Login error", "Incorrect username or password")
-        except sqlite3.Error as my_error:
+        except sqlite3.Error as my_error:  # if there was an error with the database then print that there was an error
             print("error: ", my_error)
-    except:
-        tm.showerror("Error", "Check Input")
+    except:  #if user input was invalid then throw error
+        tm.showerror("Error", "Check Input") 
 
 
+# check box for Terms & Conditions
 var1 = IntVar()
 Checkbutton(my_w, text="Accept terms and conditions", onvalue=1, offvalue=0,  variable=var1).grid(row=8, column=0,
                                                                                                   sticky=W)
 
-
+# function for the webpage link to the Terms & Conditions
 def callback(event):
     webbrowser.open_new("https://www.dropbox.com/s/ncqv6pfuj00ecz8/Asset_Policy.html?dl=0")
 
 
+# Policy document label that redirects the user to the webpage when clicked
 link = Label(my_w, text="Policy Document Link", fg="blue", cursor="hand2")
 link.grid(row=9, column=0)
 link.bind("<Button-1>", callback)
