@@ -29,7 +29,7 @@ class Database:
         return rows
 
     def insert(self, UID, Name, Surname, Asset):
-        self.cur.execute("INSERT INTO User VALUES ( ?, ?, ?, ?)", #NULL,
+        self.cur.execute("INSERT INTO User VALUES ( ?, ?, ?, ?)",
                          (UID, Name, Surname, Asset))
         self.conn.commit()
 
@@ -38,7 +38,7 @@ class Database:
         self.conn.commit()
 
     def update(self, UID, Name, Surname, Asset):
-        self.cur.execute("UPDATE User SET ID = ?, Name = ?, Surname = ?, Asset = ? WHERE row_number() = ?", #WHERE id = ?
+        self.cur.execute("UPDATE User SET ID = ?, Name = ?, Surname = ?, Asset = ? WHERE row_number() = ?", 
                          (UID, Name, Surname, Asset, self))
         self.conn.commit()
 
