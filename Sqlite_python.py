@@ -14,7 +14,7 @@ class Database:
         self.conn = sqlite3.connect(db)
         self.cur = self.conn.cursor()
         self.cur.execute(
-            "CREATE TABLE IF NOT EXISTS User (UID integer primary key, Name text, Surname text, Asset text)") #id integer primary key, 
+            "CREATE TABLE IF NOT EXISTS User (UID integer primary key, Name text, Surname text, Asset text)")
         self.conn.commit()
 
     def fetch(self, UID=''):
