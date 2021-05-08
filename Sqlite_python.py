@@ -14,7 +14,7 @@ class Database:
         self.conn = sqlite3.connect(db)
         self.cur = self.conn.cursor()
         self.cur.execute(
-            "CREATE TABLE IF NOT EXISTS User (UID integer primary key, Name text, Surname text, Asset text)")
+            "CREATE TABLE IF NOT EXISTS User (UID integer primary key, Name text, Surname text, Asset text)") 
         self.conn.commit()
 
     def fetch(self, UID=''):
@@ -29,7 +29,7 @@ class Database:
         return rows
 
     def insert(self, UID, Name, Surname, Asset):
-        self.cur.execute("INSERT INTO User VALUES ( ?, ?, ?, ?)",
+        self.cur.execute("INSERT INTO User VALUES ( ?, ?, ?, ?)", 
                          (UID, Name, Surname, Asset))
         self.conn.commit()
 
@@ -37,9 +37,9 @@ class Database:
         self.cur.execute("DELETE FROM User WHERE id=?", (UID,))
         self.conn.commit()
 
-    def update(self, UID, Name, Surname, Asset):
-        self.cur.execute("UPDATE User SET ID = ?, Name = ?, Surname = ?, Asset = ? WHERE row_number() = ?", 
-                         (UID, Name, Surname, Asset, self))
+    def update(self, UID, Name, Surname, Asset, row):
+        self.cur.execute("UPDATE User SET ID = ?, Name = ?, Surname = ?, Asset = ? WHERE ID = ?", 
+                         (UID, Name, Surname, Asset, row))
         self.conn.commit()
 
     def __del__(self):
@@ -93,8 +93,8 @@ def remove_user():
     populate_list()
 
 def update_user():
-    db.update(selected_item[0], uid_text.get(), name_text.get(),
-              surname_text.get(), asset_text.get())
+    db.update( uid_text.get(), name_text.get(),
+              surname_text.get(), asset_text.get(), selected_item[0]) #
     populate_list()
 
 def clear_text():
