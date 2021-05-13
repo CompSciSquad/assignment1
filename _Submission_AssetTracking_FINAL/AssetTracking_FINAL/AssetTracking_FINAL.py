@@ -6,7 +6,6 @@ from tkinter import messagebox
 from tkinter import *
 import webbrowser
 from tkinter.ttk import Treeview
-from tkinter.scrolledtext import ScrolledText
 
 
 # connect to database
